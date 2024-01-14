@@ -85,3 +85,25 @@ void render_color_buffer() {
 void draw_pixel_to_buffer(int x, int y, uint32_t color) {
   color_buffer[(WINDOW_WIDTH * y) + x] = color;
 }
+
+void draw_rect_to_buffer_a(int x, int y, int width, int height, uint32_t color) {
+  int t_x = x;
+  int t_y = y;
+
+  for (int row = 0; row < height; row++) {
+    t_x = x;
+    for (int col = 0; col < width; col++) {
+      draw_pixel_to_buffer(t_x, t_y, color);
+      t_x++;
+    }
+    t_y++;
+  }
+}
+
+void draw_rect_to_buffer(int x, int y, int width, int height, uint32_t color) {
+  for (int i = x; i <= (x + width); i++) {
+    for (int j = y; j <= (y + height); j++) {
+      draw_pixel_to_buffer(i, j, color);
+    }
+  }
+}
