@@ -1,15 +1,16 @@
 #include "defs.h"
 #include "textures.h"
 #include "graphics.h"
-#include "sound_manager.h"
+#include "audio_constants.h"
+#include "audio_manager.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdint.h>
 #include <limits.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
-#include <unistd.h>
 
 const int MAP[MAP_NUM_ROWS][MAP_NUM_COLS] = {
   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1, 1, 1},
@@ -229,11 +230,11 @@ void process_input() {
           game_running = false;
         }
         if (event.key.keysym.sym == SDLK_r) {
-          load_background_audio(1);
+          load_background_audio(AC_AOT_RAGE);
           play_background_audio(-1);
         }
         if (event.key.keysym.sym == SDLK_t) {
-          load_background_audio(2);
+          load_background_audio(AC_RAE_LGC);
           play_background_audio(-1);
         }
         if (event.key.keysym.sym == SDLK_UP) {
@@ -396,14 +397,18 @@ void free_resources(void) {
 }
 
 int main(int argc, char** argv) {
-  game_running = initialize_window();
+  game_running = initialize_window() && initialize_mixer_context();
+
   if (!game_running) {
-    printf("There was an error on init");
-    return 0;
+    printf("There was an error on initialization.\n");
+    return 1;
   }
 
-  initialize_mixer_context();
-  load_background_audio(1);
+  if (!load_background_audio(AC_AOT_RAGE)) {
+    printf("There was an error loading audio buffer. %s\n");
+    return 1;
+  }
+
   play_background_audio(-1);
 
   setup();

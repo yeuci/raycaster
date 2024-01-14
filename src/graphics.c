@@ -1,6 +1,5 @@
 #include "defs.h"
 #include "textures.h"
-#include "sound_manager.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <limits.h>
