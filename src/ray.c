@@ -3,6 +3,7 @@
 #include "player.h"
 #include "map.h"
 #include <float.h>
+#include "graphics.h"
 
 ray_t rays[NUM_RAYS];
 
@@ -16,6 +17,18 @@ float normalize_angle(float angle) {
 
 float vector_distance(float x_1, float y_1, float x_2, float y_2) {
   return sqrt((x_2 - x_1) * (x_2 - x_1) + (y_2 - y_1) * (y_2 - y_1));
+}
+
+void render_rays() {
+  for (int i = 0; i < NUM_RAYS; i++) {
+    draw_line_to_buffer(
+      MINIMAP_SCALE_FACTOR * player.x,
+      MINIMAP_SCALE_FACTOR * player.y,
+      MINIMAP_SCALE_FACTOR * rays[i].wallHitX,
+      MINIMAP_SCALE_FACTOR * rays[i].wallHitY,
+      0xFF0000FF
+    );
+  }
 }
 
 void cast_ray(float ray_angle, int strip_id) {

@@ -17,6 +17,6 @@ extern player_t player;
 
 void render_player(void);
 void move_player(float delta_time);
-void render_angle(void);
+void render_player_angle(void);
 
 #endif // !PLAYER_H

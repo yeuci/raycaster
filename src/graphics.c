@@ -1,5 +1,6 @@
 #include "defs.h"
 #include "textures.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <limits.h>
@@ -105,5 +106,32 @@ void draw_rect_to_buffer(int x, int y, int width, int height, uint32_t color) {
     for (int j = y; j <= (y + height); j++) {
       draw_pixel_to_buffer(i, j, color);
     }
+  }
+}
+
+void draw_line_to_buffer_a(int x_0, int x_1, int y_0, int y_1, uint32_t color) {
+  float m = (float)(y_1 - y_0) / (float)(x_1 - x_0);
+  for (int x = x_0; x <= x_1; x++) {
+    float y = (float)m*x;
+    draw_pixel_to_buffer(x, round(y), color);
+  }
+}
+
+void draw_line_to_buffer(int x_0, int y_0, int x_1, int y_1, uint32_t color) {
+  int delta_x = (x_1 - x_0);
+  int delta_y = (y_1 - y_0);
+
+  int side_length = (abs(delta_x) >= abs(delta_y)) ? abs(delta_x) : abs(delta_y);
+
+  float x_inc = delta_x / (float)side_length;
+  float y_inc = delta_y / (float)side_length;
+
+  float current_x = x_0;
+  float current_y = y_0;
+
+  for (int i = 0; i < side_length; i++) {
+    draw_pixel_to_buffer(round(current_x), round(current_y), color);
+    current_x += x_inc;
+    current_y += y_inc;
   }
 }

@@ -19,6 +19,7 @@ float normalize_angle(float angle);
 float vector_distance(float x_1, float y_1, float x_2, float y_2);
 void cast_ray(float ray_angle, int strip_id);
 void cast_all_rays();
+void render_rays();
 
 
 #endif // !RAY_H

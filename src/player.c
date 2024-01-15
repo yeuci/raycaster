@@ -17,15 +17,14 @@ player_t player = {
   .turnSpeed     = 110 * (PI / 180)
 };
 
-void render_angle() {
-  /*SDL_RenderDrawLine(
-    renderer,
+void render_player_angle(void) {
+  draw_line_to_buffer(
     (player.x + (player.width / 2))    * MINIMAP_SCALE_FACTOR,
     player.y                           * MINIMAP_SCALE_FACTOR,
     ((player.x + (player.width / 2))   + cos(player.rotationAngle) * 40) * MINIMAP_SCALE_FACTOR,
-    (player.y                          + sin(player.rotationAngle) * 40) * MINIMAP_SCALE_FACTOR
+    (player.y                          + sin(player.rotationAngle) * 40) * MINIMAP_SCALE_FACTOR,
+    0x00000000
   );
-  */
 }
 
 void render_player() {
@@ -37,7 +36,7 @@ void render_player() {
     0xFFFFFFFF
   );
 
-  render_angle();
+  //render_player_angle();
 }
 
 void move_player(float delta_time) {
