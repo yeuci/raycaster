@@ -13,6 +13,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #include "wall.h"
+#include "sprite.h"
 
 bool game_running                 = false;
 int last_frame_ticks              = 0;
@@ -95,11 +96,12 @@ void render() {
   clear_color_buffer(0xFF000000);
 
   generate_projection();
-  //generate_object_projection();
+  generate_sprite_projection();
 
   render_map();
   render_rays();
   render_player();
+  render_map_sprites();
 
   render_color_buffer();
 }

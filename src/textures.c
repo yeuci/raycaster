@@ -4,15 +4,20 @@
 #include "upng.h"
 
 static const char* TEXTURE_FILE_NAMES[NUM_TEXTURES] = {
-  "./assets/images/redbrick.png",
-  "./assets/images/purplestone.png",
-  "./assets/images/mossystone.png",
-  "./assets/images/graystone.png",
-  "./assets/images/colorstone.png",
-  "./assets/images/bluestone.png",
-  "./assets/images/wood.png",
-  "./assets/images/eagle.png",
-  "./assets/images/pikuma.png"
+  "./assets/images/redbrick.png",    // [0]
+  "./assets/images/purplestone.png", // [1]
+  "./assets/images/mossystone.png",  // [2]
+  "./assets/images/graystone.png",   // [3]
+  "./assets/images/colorstone.png",  // [4]
+  "./assets/images/bluestone.png",   // [5]
+  "./assets/images/wood.png",        // [6]
+  "./assets/images/eagle.png",       // [7]
+  "./assets/images/pikuma.png",      // [8]
+  "./assets/images/barrel.png",      // [9]
+  "./assets/images/light.png",       // [10]
+  "./assets/images/table.png",       // [11]
+  "./assets/images/guard.png",       // [12]
+  "./assets/images/armor.png"        // [13]
 };
 
 upng_t* world_textures[NUM_TEXTURES];

@@ -37,6 +37,7 @@ bool initialize_window() {
     return false;
   }
 
+  // w -> -1 -> 0
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
 
   if (!renderer) {
@@ -109,7 +110,7 @@ void draw_rect_to_buffer(int x, int y, int width, int height, uint32_t color) {
   }
 }
 
-void draw_line_to_buffer_a(int x_0, int x_1, int y_0, int y_1, uint32_t color) {
+void draw_line_to_buffer_aa(int x_0, int x_1, int y_0, int y_1, uint32_t color) {
   float m = (float)(y_1 - y_0) / (float)(x_1 - x_0);
   for (int x = x_0; x <= x_1; x++) {
     float y = (float)m*x;
@@ -117,7 +118,7 @@ void draw_line_to_buffer_a(int x_0, int x_1, int y_0, int y_1, uint32_t color) {
   }
 }
 
-void draw_line_to_buffer(int x_0, int y_0, int x_1, int y_1, uint32_t color) {
+void draw_line_to_buffer_a(int x_0, int y_0, int x_1, int y_1, uint32_t color) {
   int delta_x = (x_1 - x_0);
   int delta_y = (y_1 - y_0);
 
@@ -133,5 +134,31 @@ void draw_line_to_buffer(int x_0, int y_0, int x_1, int y_1, uint32_t color) {
     draw_pixel_to_buffer(round(current_x), round(current_y), color);
     current_x += x_inc;
     current_y += y_inc;
+  }
+}
+
+void draw_line_to_buffer(int x_0, int y_0, int x_1, int y_1, uint32_t color) {
+  int delta_x = abs(x_1 - x_0);
+  int delta_y = abs(y_1 - y_0);
+  int sign_x = (x_0 < x_1) ? 1 : -1;
+  int sign_y = (y_0 < y_1) ? 1 : -1;
+
+  int error = delta_x - delta_y;
+
+  draw_pixel_to_buffer(x_0, y_0, color);
+
+  while (x_0 != x_1 || y_0 != y_1) {
+    draw_pixel_to_buffer(x_0, y_0, color);
+    int error2 = error * 2;
+
+    if (error2 > -delta_y) {
+      error -= delta_y;
+      x_0 += sign_x;
+    }
+
+    if (error2 < delta_x) {
+      error += delta_x;
+      y_0 += sign_y;
+    }
   }
 }

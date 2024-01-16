@@ -4,6 +4,7 @@
 #include "map.h"
 #include <float.h>
 #include "graphics.h"
+#include <SDL2/SDL.h>
 
 ray_t rays[NUM_RAYS];
 
@@ -19,6 +20,7 @@ float vector_distance(float x_1, float y_1, float x_2, float y_2) {
 }
 
 void render_rays() {
+  SDL_Renderer* renderer = get_renderer();
   for (int i = 0; i < NUM_RAYS; i++) {
     draw_line_to_buffer(
       MINIMAP_SCALE_FACTOR * player.x,
