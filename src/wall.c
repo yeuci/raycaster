@@ -13,10 +13,10 @@ void generate_projection(void) {
     int wall_strip_height = (int)projected_wall_height;
 
     int wall_top_pixel = (WINDOW_HEIGHT / 2) - (wall_strip_height / 2);
-    wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
+    wall_top_pixel = wall_top_pixel < 0  || wall_top_pixel > WINDOW_HEIGHT ? 0 : wall_top_pixel;
 
     int wall_bottom_pixel = (WINDOW_HEIGHT / 2) + (wall_strip_height / 2);
-    wall_bottom_pixel = wall_bottom_pixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wall_bottom_pixel;
+    wall_bottom_pixel = wall_bottom_pixel > WINDOW_HEIGHT || wall_bottom_pixel < 0 ? WINDOW_HEIGHT : wall_bottom_pixel;
 
     int to_x;
     if (rays[x].wasHitVertical) {

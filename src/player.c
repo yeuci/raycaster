@@ -4,6 +4,7 @@
 #include "graphics.h"
 #include "math.h"
 #include "map.h"
+#include "ray.h"
 
 player_t player = {
   .x             =  WINDOW_WIDTH / 2,
@@ -41,6 +42,7 @@ void render_player() {
 
 void move_player(float delta_time) {
   player.rotationAngle += player.turnDirection * player.turnSpeed * delta_time;
+  normalize_angle(&player.rotationAngle);
 
   float move_step = player.walkDirection * player.walkSpeed * delta_time;
 

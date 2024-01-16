@@ -1,5 +1,6 @@
 #include "defs.h"
 #include "textures.h"
+#include "map.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -85,6 +86,8 @@ void render_color_buffer() {
 }
 
 void draw_pixel_to_buffer(int x, int y, uint32_t color) {
+  if (x < 0 || x > MAP_NUM_COLS * TILE_SIZE || y < 0 || y > MAP_NUM_ROWS * TILE_SIZE)
+    return;
   color_buffer[(WINDOW_WIDTH * y) + x] = color;
 }
 
