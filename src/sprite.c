@@ -8,10 +8,11 @@
 
 
 static sprite_t sprites[NUM_SPRITES] = {
-  { .x = 640, .y = 630, .texture = 9 },
+  { .x = 640, .y = 630, .texture = 9  },
   { .x = 250, .y = 600, .texture = 11 },
   { .x = 250, .y = 600, .texture = 10 },
-  { .x = 300, .y = 400, .texture = 12 }
+  { .x = 300, .y = 400, .texture = 12 },
+  { .x = 90, .y = 100, .texture = 13 }
 };
 
 void generate_sprite_projection(void) {

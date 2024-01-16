@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#define NUM_SPRITES 4
+#define NUM_SPRITES 5
 
 typedef struct {
   float x;

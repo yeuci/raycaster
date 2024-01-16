@@ -86,7 +86,7 @@ void render_color_buffer() {
 }
 
 void draw_pixel_to_buffer(int x, int y, uint32_t color) {
-  if (x < 0 || x > MAP_NUM_COLS * TILE_SIZE || y < 0 || y > MAP_NUM_ROWS * TILE_SIZE)
+  if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
     return;
   color_buffer[(WINDOW_WIDTH * y) + x] = color;
 }
