@@ -5,7 +5,7 @@
 #include "stdint.h"
 #include "upng.h"
 
-#define NUM_TEXTURES        14
+#define NUM_TEXTURES        17
 
 upng_t* get_world_texture(int idx);
 void load_world_textures();

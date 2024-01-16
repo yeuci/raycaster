@@ -17,7 +17,10 @@ static const char* TEXTURE_FILE_NAMES[NUM_TEXTURES] = {
   "./assets/images/light.png",       // [10]
   "./assets/images/table.png",       // [11]
   "./assets/images/guard.png",       // [12]
-  "./assets/images/armor.png"        // [13]
+  "./assets/images/armor.png",        // [13]
+  "./assets/images/BRICK_3B.png",
+  "./assets/images/BRICK_3D.png",
+  "./assets/images/HEDGE_1A.png"
 };
 
 upng_t* world_textures[NUM_TEXTURES];
