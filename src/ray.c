@@ -7,12 +7,11 @@
 
 ray_t rays[NUM_RAYS];
 
-float normalize_angle(float angle) {
-  angle = remainder(angle, TWO_PI);
-  if (angle < 0) {
-    angle = TWO_PI + angle;
+void normalize_angle(float* angle) {
+  *angle = remainder(*angle, TWO_PI);
+  if (*angle < 0) {
+    *angle = TWO_PI + *angle;
   }
-  return angle;
 }
 
 float vector_distance(float x_1, float y_1, float x_2, float y_2) {
@@ -32,7 +31,7 @@ void render_rays() {
 }
 
 void cast_ray(float ray_angle, int strip_id) {
-  ray_angle = normalize_angle(ray_angle);
+  normalize_angle(&ray_angle);
 
   bool isRayFacingDown = ray_angle > 0 && ray_angle < PI;
   bool isRayFacingUp = !isRayFacingDown;

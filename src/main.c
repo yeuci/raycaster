@@ -95,6 +95,7 @@ void render() {
   clear_color_buffer(0xFF000000);
 
   generate_projection();
+  //generate_object_projection();
 
   render_map();
   render_rays();

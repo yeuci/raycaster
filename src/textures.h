@@ -5,16 +5,9 @@
 #include "stdint.h"
 #include "upng.h"
 
-typedef struct {
-  upng_t* upng_texture;
-  int width;
-  int height;
-  uint32_t* texture_buffer;
-} texture_t;
-
-texture_t get_world_texture(int idx);
-
+upng_t* get_world_texture(int idx);
 void load_world_textures();
 void free_world_textures();
+void change_color_intensity(uint32_t* color, float factor);
 
 #endif
